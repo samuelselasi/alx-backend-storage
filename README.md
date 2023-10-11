@@ -1,4 +1,5 @@
 # Storage - Backend Specialization
+![download (2)](https://github.com/samuelselasi/alx-backend-storage/assets/85158665/d1c9a745-4f65-4c24-97c1-40edea703971)
 
 ## Table of Contents
 * [About](#about)
