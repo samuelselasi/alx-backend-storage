@@ -157,11 +157,11 @@ bob@dylan:~$
 
 [2. Best band ever!](./2-fans.sql)
 
-Write a SQL script that ranks country origins of bands, ordered by the number of (non-unique) fans
+Write a SQL script that ranks country origins of bands, ordered by the number of (non-unique) `fans`
 
 ### Requirements:
 
-* Import this table dump: [metal_bands.sql.zip](https://intranet.alxswe.com/rltoken/uPn947gnZLaa0FJrrAFTGQ)
+* Import this table dump: [metal_bands.sql](./metal_bands.sql)
 * Column names must be: `origin` and `nb_fans`
 * Your script can be executed on any database
 
@@ -185,3 +185,29 @@ Italy   7178
 bob@dylan:~$ 
 ```
 
+[3. Old school band](./3-glam_rock.sql)
+
+Write a SQL script that lists all bands with `Glam rock` as their main style, ranked by their `longevity`
+
+### Requirements:
+
+* Import this table dump: [metal_bands.sql](./metal_bands.sql)
+* Column names must be: `band_name` and `lifespan` (in years until `2022` - please use `2022` instead of `YEAR(CURDATE()`))
+* You should use attributes formed and `split` for computing the `lifespan`
+* Your script can be executed on any database
+```
+bob@dylan:~$ cat metal_bands.sql | mysql -uroot -p holberton
+Enter password: 
+bob@dylan:~$ 
+bob@dylan:~$ cat 3-glam_rock.sql | mysql -uroot -p holberton 
+Enter password: 
+band_name   lifespan
+Alice Cooper    56
+Mötley Crüe   34
+Marilyn Manson  31
+The 69 Eyes 30
+Hardcore Superstar  23
+Nasty Idols 0
+Hanoi Rocks 0
+bob@dylan:~$
+```
