@@ -1,5 +1,6 @@
 # 0x00. MySQL advanced
 #### `Back-end` `SQL` `MySQL`
+![fi_coding-013](https://github.com/samuelselasi/alx-backend-storage/assets/85158665/c5762273-0a24-4f06-b608-2f2aa79434d6)
 
 ## Resources
 ### Read or watch:
