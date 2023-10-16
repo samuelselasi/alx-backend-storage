@@ -1,5 +1,6 @@
 # 0x01. NoSQL
 #### `Back-end` `NoSQL` `MongoDB`
+![16668what-is-Nosql-database1](https://github.com/samuelselasi/alx-backend-storage/assets/85158665/5f451831-8962-4d3c-9ed8-bb28f2f17000)
 
 ## Resources
 **Read or watch**:
