@@ -25,3 +25,4 @@ This directory consists of:
 ## Projects
 
 0. [0x00-MySQL_Advanced](./0x00-MySQL_Advanced)
+1. [0x01-NoSQL](./0x01-NoSQL)
