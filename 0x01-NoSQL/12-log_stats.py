@@ -3,7 +3,7 @@
 import pymongo
 
 
-client = pymongo.MongoClient('localhost', 27017)
+client = pymongo.MongoClient('mongodb://127.0.0.1:27017')
 database = client['logs']
 collection = database['nginx']
 
