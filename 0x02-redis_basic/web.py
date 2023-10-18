@@ -3,19 +3,23 @@
 import redis
 import requests
 
+data = redis.Redis()
+
 
 def get_page(url: str) -> str:
     """Function that returns HTML content of a URL"""
 
-    data = redis.Redis()
-    count = 0
+    cached_content = data.get(f"cached:{url}")
+    if cached_content:
+        return cached_content.decode('utf-8')
 
-    data.set(f"cached:{url}", count)
-    content = requests.get(url)
-    data.incr(f"count:{url}")
-    data.setex(f"cached:{url}", 10, data.get(f"cached:{url}"))
-    return content.text
+    count = data.incr(f"count:{url}")
+    content = requests.get(url).text
+
+    data.setex(f"cached:{url}", 10, content)
+    return content
 
 
-if __name__ == "__main":
-    get_page('http://slowwly.robertomurray.co.uk')
+# if __name__ == "__main__":
+    # content = get_page('http://slowwly.robertomurray.co.uk')
+    # print(content)
