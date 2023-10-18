@@ -7,25 +7,6 @@ from typing import Optional, Callable
 from functools import wraps
 
 
-# Task 3: Storing lists
-def call_history(method: Callable) -> Callable:
-    """Function to store the history of inputs and outputs of a function"""
-
-    key = method.__qualname__
-    inputs = key + ":inputs"
-    outputs = key + ":outputs"
-
-    @wraps(method)
-    def wrapper(self, *args, **kwds):
-        """Function that defines wrapper"""
-
-        self._redis.rpush(inputs, str(args))
-        data = method(self, *args, **kwds)
-        self._redis.rpush(outputs, str(data))
-        return data
-    return wrapper
-
-
 # Task 2: Incrementing values
 def count_calls(method: Callable) -> Callable:
     """Function to count no. of times methods of Cache are called"""
@@ -35,7 +16,6 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def wrapper(self, *args, **kwds):
         """Funtion that defines wrapper"""
-
         self._redis.incr(key)
         return method(self, *args, **kwds)
     return wrapper
@@ -52,7 +32,6 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls  # Decorate Cache.store with count_calls function
-    @call_history  # Decorate Cache.store with call_history function
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """Method that takes data, generates key to store & returns the key"""
 
@@ -85,24 +64,3 @@ class Cache:
         except Exception:
             data = 0
         return data
-
-
-# Task 4: Retrieving lists
-def replay(method: Callable):
-    """Function that prints the history of calls of a function"""
-
-    key = method.__qualname__
-    inputs = key + ":inputs"
-    outputs = key + ":outputs"
-
-    redis = method.__self__._redis
-    count = redis.get(key).decode("utf-8")
-    print("{} was called {} times:".format(key, count))
-
-    list_input = redis.lrange(inputs, 0, -1)
-    list_output = redis.lrange(outputs, 0, -1)
-    zipped = list(zip(list_input, list_output))
-
-    for ins, outs in zipped:
-        attr, data = ins.decode("utf-8"), outs.decode("utf-8")
-        print("{}(*{}) -> {}".format(key, attr, data))
