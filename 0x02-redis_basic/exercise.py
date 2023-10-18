@@ -51,8 +51,8 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    @call_history  # Decorate Cache.store with call_history function
     @count_calls  # Decorate Cache.store with count_calls function
+    @call_history  # Decorate Cache.store with call_history function
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """Method that takes data, generates key to store & returns the key"""
 
