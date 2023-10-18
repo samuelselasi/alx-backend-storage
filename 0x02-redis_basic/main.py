@@ -5,6 +5,7 @@ Main file
 import redis
 
 Cache = __import__('exercise').Cache
+replay = __import__('exercise').replay
 
 cache = Cache()
 
@@ -25,3 +26,9 @@ for value, fn in TEST_CASES.items():
     key = cache.store(value)
     assert cache.get(key, fn=fn) == value
     print(value)
+
+
+cache.store("foo")
+cache.store("bar")
+cache.store(42)
+replay(cache.store)
