@@ -1,5 +1,6 @@
 # 0x02. Redis basic
 #### `Back-end` `Redis`
+![40eab4627f1bea7dfe5e](https://github.com/samuelselasi/alx-backend-storage/assets/85158665/d646d43c-f29c-484d-98ed-05f2e7495742)
 
 ## Resources
 **Read or watch**:
