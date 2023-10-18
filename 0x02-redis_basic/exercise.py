@@ -4,8 +4,24 @@ import redis
 from uuid import uuid4
 from typing import Union
 from typing import Optional, Callable
+from functools import wraps
 
 
+# Task 2: Incrementing values
+def count_calls(method: Callable) -> Callable:
+    """Function to count no. of times methods of Cache are called"""
+
+    key = method.__qualname__
+
+    @wraps(method)
+    def wrapper(self, *args, **kwds):
+        """Funtion that defines wrapper"""
+        self._redis.incr(key)
+        return method(self, *args, **kwds)
+    return wrapper
+
+
+# Task 0: Writing strings to Redis
 class Cache:
     """Class that contains methods with Redis instance attributes"""
 
@@ -15,6 +31,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls  # Decorate Cache.store with count_calls function
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """Method that takes data, generates key to store & returns the key"""
 
@@ -23,7 +40,6 @@ class Cache:
         return key
 
     # Task 1: Reading from Redis and recovering original type
-
     def get(self, key: str, fn: Optional[Callable] = None) -> Union[
             str, bytes, int, float]:
         """Method that converts data back to original format"""
