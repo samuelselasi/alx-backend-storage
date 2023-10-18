@@ -24,6 +24,7 @@ def url_count(method):
 
         data.incr(count)
         data.set(key, content, ex=10)
+        data.expire(key, 10)
         return content
     return wrapper
 
