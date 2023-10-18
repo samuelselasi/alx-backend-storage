@@ -20,6 +20,6 @@ def get_page(url: str) -> str:
     return content
 
 
-# if __name__ == "__main__":
-    # content = get_page('http://slowwly.robertomurray.co.uk')
-    # print(content)
+if __name__ == "__main__":
+    content = get_page('http://slowwly.robertomurray.co.uk')
+    print(content)
