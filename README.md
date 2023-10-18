@@ -26,3 +26,4 @@ This directory consists of:
 
 0. [0x00-MySQL_Advanced](./0x00-MySQL_Advanced)
 1. [0x01-NoSQL](./0x01-NoSQL)
+2. [0x02-redis_basic](./0x02-redis_basic)
