@@ -29,11 +29,11 @@ def get_page(url: str) -> str:
 
     count = data.incr(f"count:{url}")
     content = requests.get(url).text
-    print(content)
-    print("Count: {}".format(count))
+    # print(content)
+    # print("Count: {}".format(count))
     return content
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # get_page('http://slowwly.robertomurray.co.uk')
-    get_page('http://google.com')
+    # get_page('http://google.com')
